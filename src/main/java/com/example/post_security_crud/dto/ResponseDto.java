@@ -5,8 +5,8 @@ public class ResponseDto {
 
     private String msg;
 
-    public ResponseDto(String msg, int statusCode){
-        this.msg = msg;
+    public ResponseDto(int statusCode, String msg) {
         this.statusCode = statusCode;
+        this.msg = msg;
     }
 }
