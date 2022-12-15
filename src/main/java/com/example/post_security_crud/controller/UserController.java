@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 @RequiredArgsConstructor
 public class UserController {
 
-
     private final UserService userService;
 
     @PostMapping("/signup")
@@ -33,9 +32,6 @@ public class UserController {
        return userService.login(loginRequestDto, response);
 
     }
-
-
-
 
 }
 
