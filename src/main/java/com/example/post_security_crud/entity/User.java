@@ -1,13 +1,12 @@
 package com.example.post_security_crud.entity;
 
-import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 
-@Entity
+@Entity(name = "users")
 @Getter
 @NoArgsConstructor
 public class User {

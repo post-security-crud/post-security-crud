@@ -3,7 +3,6 @@ package com.example.post_security_crud.security;
 
 import com.example.post_security_crud.entity.User;
 import com.example.post_security_crud.repository.UserRepository;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,11 +11,10 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-@NoArgsConstructor
 @RequiredArgsConstructor
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
 
     //user가 입력한 username으로 !

@@ -2,14 +2,6 @@ package com.example.post_security_crud.dto;
 
 import com.example.post_security_crud.entity.Post;
 
-import com.example.post_security_crud.entity.Post;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
-import com.example.post_security_crud.entity.Post;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 public class PostResponseDto extends ResponseDto {

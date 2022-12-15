@@ -5,8 +5,6 @@ import com.example.post_security_crud.dto.ResponseDto;
 import com.example.post_security_crud.dto.SignupRequestDto;
 import com.example.post_security_crud.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

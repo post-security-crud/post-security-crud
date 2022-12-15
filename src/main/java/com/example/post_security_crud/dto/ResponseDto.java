@@ -1,9 +1,7 @@
 package com.example.post_security_crud.dto;
 
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Getter
 @NoArgsConstructor
 public class ResponseDto {
     private int statusCode;

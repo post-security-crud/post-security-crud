@@ -4,35 +4,19 @@ import com.example.post_security_crud.dto.PostRequestDto;
 import com.example.post_security_crud.dto.PostResponseDto;
 import com.example.post_security_crud.dto.ResponseDto;
 import com.example.post_security_crud.entity.Post;
-import com.example.post_security_crud.repository.PostRepository;
-import com.example.post_security_crud.dto.PostResponseDto;
-import com.example.post_security_crud.entity.Post;
-import com.example.post_security_crud.repository.PostRepository;
-import com.example.post_security_crud.dto.PostRequestDto;
-import com.example.post_security_crud.dto.PostResponseDto;
-import com.example.post_security_crud.dto.ResponseDto;
-import com.example.post_security_crud.entity.Post;
 import com.example.post_security_crud.entity.User;
 import com.example.post_security_crud.jwt.JwtUtil;
 import com.example.post_security_crud.repository.PostRepository;
 import com.example.post_security_crud.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Service
 @RequiredArgsConstructor
@@ -43,7 +27,7 @@ public class PostService {
     private final JwtUtil jwtUtil;
 
     @Transactional
-    public PostResponseDto savePost(PostRequestDto requestDto, HttpServletRequest request) {
+    public ResponseDto savePost(PostRequestDto requestDto, HttpServletRequest request) {
         //Request에서 Token 가져오기
         String token = jwtUtil.resolveToken(request);
         Claims claims;
@@ -61,13 +45,10 @@ public class PostService {
                     () -> new IllegalArgumentException("사용자가 존재하지 않습니다.")
             );
             //요청 받은 Dto로 DB에 저장할 객체 만들기
-            Post post = postRepository.saveAndFlush(new Post(requestDto, user.getUsername()));
-            System.out.println("post.get = " + post.getId());
-            System.out.println("post.getCreatedAt() = " + post.getCreatedAt());
-            System.out.println("post.getModifiedAt() = " + post.getModifiedAt());
-            return new PostResponseDto(post);
+            Post post = postRepository.save(new Post(requestDto, user.getUsername()));
+            return new PostResponseDto(HttpStatus.OK.value(), "OK!", post);
         } else {
-            return null;
+            return new ResponseDto(HttpStatus.BAD_REQUEST.value(), "false");
         }
     }
 
@@ -80,7 +61,7 @@ public class PostService {
 
         List<PostResponseDto> posts = new ArrayList<>();
         for (Post post : postList) {
-            posts.add(new PostResponseDto(post));
+            posts.add(new PostResponseDto(HttpStatus.OK.value(), "OK!", post));
         }
         return posts;
     }
@@ -90,7 +71,7 @@ public class PostService {
         Post post = postRepository.findById(id).orElseThrow(
                 () -> new NullPointerException("게시글이 존재하지 않습니다.")
         );
-      return new PostResponseDto(post);
+      return new PostResponseDto(HttpStatus.OK.value(), "OK!", post);
     }
 
     @Transactional

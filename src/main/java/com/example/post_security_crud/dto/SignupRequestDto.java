@@ -1,7 +1,5 @@
 package com.example.post_security_crud.dto;
 
-import com.example.post_security_crud.entity.UserRoleEnum;
-import lombok.Getter;
 import lombok.Getter;
 
 @Getter

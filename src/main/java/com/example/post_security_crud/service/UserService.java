@@ -64,17 +64,16 @@ public class UserService {
         );
 
         // 비밀번호 확인
-        if(!passwordEncoder.matches(password, user.getPassword())){
-            throw  new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
         }
 
         response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(user.getUsername(), user.getRole()));
 
-        return new ResponseDto("로그인 성공", HttpStatus.OK.value());
+        return new ResponseDto(HttpStatus.OK.value(), "로그인 성공");
 
     }
 
-
-    }
+}
 
 
