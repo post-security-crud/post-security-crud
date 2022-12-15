@@ -77,25 +77,46 @@ public class PostService {
     @Transactional
     public ResponseDto updatePost(Long id, PostRequestDto postRequestDto, HttpServletRequest request) {
         // USER ROLE 체크 & 토큰 & 시큐리티 검증 과정 추가
+        String token = jwtUtil.resolveToken(request);
+        Claims claims;
 
-        Post post = checkPost(id);
+        if(token != null) {
+            if(jwtUtil.validateToken(token)) {
+                claims = jwtUtil.getUserInfoFromToken(token);
+            } else {
+                throw new IllegalArgumentException("Token Error");
+            }
+            Post post = checkPost(id);
 
-        post.update(postRequestDto);
+            post.update(postRequestDto);
+            return new PostResponseDto(200, "OK!", post);
+        }
 
-        //TODO
-        return new PostResponseDto(200, "OK!", post);
+        return new ResponseDto(400, "False");
+
     }
 
     @Transactional
     public ResponseDto deletePost(Long id, HttpServletRequest request) {
         // USER ROLE 체크 & 토큰 & 시큐리티 검증 과정 추가
+        String token = jwtUtil.resolveToken(request);
+        Claims claims;
 
-        Post post = checkPost(id);
+        if(token != null) {
+            if(jwtUtil.validateToken(token)) {
+                claims = jwtUtil.getUserInfoFromToken(token);
+            } else {
+                throw new IllegalArgumentException("Token Error");
+            }
+            Post post = checkPost(id);
 
-        postRepository.delete(post);
+            postRepository.delete(post);
 
-        //TODO
-        return new ResponseDto(200, "OK!");
+            return new ResponseDto(200, "OK!");
+        }
+
+        return new ResponseDto(400, "False");
+
     }
 
     public Post checkPost(Long id) {
