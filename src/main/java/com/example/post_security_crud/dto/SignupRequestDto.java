@@ -2,6 +2,7 @@ package com.example.post_security_crud.dto;
 
 import com.example.post_security_crud.entity.UserRoleEnum;
 import lombok.Getter;
+import lombok.Getter;
 
 @Getter
 public class SignupRequestDto {
@@ -12,4 +13,9 @@ public class SignupRequestDto {
     private boolean admin = false;
 
     private String adminToken = "";
+
+    public SignupRequestDto(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }

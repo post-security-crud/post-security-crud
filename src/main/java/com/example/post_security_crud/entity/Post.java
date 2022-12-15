@@ -1,6 +1,5 @@
 package com.example.post_security_crud.entity;
 
-import com.example.post_security_crud.dto.PostRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,7 +23,15 @@ public class Post extends Timestamped {
     @Column(nullable = false)
     private String username;
 
+    public Post(PostRequestDto requestDto, String username) {
+        super();
+        this.title = requestDto.getTitle();
+        this.content = requestDto.getContent();
+        this.username = username;
+    }
+
     public void update(PostRequestDto postRequestDto) {
         this.content = postRequestDto.getContent();
     }
 }
+
