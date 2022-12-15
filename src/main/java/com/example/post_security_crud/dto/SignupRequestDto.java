@@ -1,8 +1,10 @@
 package com.example.post_security_crud.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class SignupRequestDto {
     private String username;
 

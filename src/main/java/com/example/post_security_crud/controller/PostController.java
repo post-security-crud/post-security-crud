@@ -25,7 +25,6 @@ public class PostController {
     @GetMapping("/posts")
     public List<PostResponseDto> getPostList(){
         return postService.getPostList();
-
     }
 
     @GetMapping("/post/{Id}")

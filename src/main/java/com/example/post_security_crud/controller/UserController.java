@@ -21,7 +21,8 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/signup")
-    public ResponseDto signup(@RequestBody SignupRequestDto signupRequestDto, HttpServletResponse response) {
+    public ResponseDto signup(@RequestBody SignupRequestDto signupRequestDto) {
+
         userService.signup(signupRequestDto);
         return new ResponseDto(HttpStatus.OK.value(), "회원가입 성공");
     }
@@ -30,6 +31,5 @@ public class UserController {
     @PostMapping("/login")
     public ResponseDto login(@RequestBody LoginRequestDto loginRequestDto, HttpServletResponse response) {
         return userService.login(loginRequestDto, response);
-
     }
 }

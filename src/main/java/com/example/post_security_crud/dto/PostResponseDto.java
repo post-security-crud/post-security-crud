@@ -1,9 +1,13 @@
 package com.example.post_security_crud.dto;
 
 import com.example.post_security_crud.entity.Post;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 public class PostResponseDto extends ResponseDto {
     private Long id;
 
